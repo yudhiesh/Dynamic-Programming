@@ -1,4 +1,4 @@
-from typing import List, Union, Dict
+from typing import List, Optional, Union, Dict
 
 """
 Write a function how_sum(target_sum, numbers) that returns an array containing
@@ -7,7 +7,7 @@ no combination that adds up o the target_sum. then return null.
 """
 
 
-def how_sum(numbers: List[int], target_sum: int) -> Union[List[int], None]:
+def how_sum(numbers: List[int], target_sum: int) -> Optional[List[int]]:
     if target_sum == 0:
         return []
     if target_sum < 0:
@@ -22,7 +22,7 @@ def how_sum(numbers: List[int], target_sum: int) -> Union[List[int], None]:
 
 
 def how_sum_memo(
-    numbers: List[int], target_sum: int, memo: Dict[int, Union[List[int], None]]
+    numbers: List[int], target_sum: int, memo: Dict[int, Optional[List[int]]]
 ) -> Union[List[int], None]:
     if target_sum == 0:
         return []
@@ -40,16 +40,16 @@ def how_sum_memo(
     return memo[target_sum]
 
 
-def how_sum_tabulation(numbers: List[int], target_sum: int) -> Union[List[int], None]:
+def how_sum_tabulation(numbers: List[int], target_sum: int) -> Optional[List[int]]:
     table_length = target_sum + 1
     table = [None] * table_length
-    table[0] = []
+    table[0] = []  # type: ignore
     for i in range(table_length):
         if table[i] == [] or table[i] is not None:
             for number in numbers:
                 forward = i + number
                 if forward <= target_sum:
-                    table[forward] = table[i] + [number]
+                    table[forward] = table[i] + [number]  # type: ignore
     return table[target_sum]
 
 
