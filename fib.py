@@ -3,7 +3,7 @@ Given a value N find the fibonacci number at that position
 """
 
 
-def fib_recursive(n):
+def fib_recursive(n: int) -> int:
     cache = {}
     if n == 0:
         return 0
@@ -16,14 +16,14 @@ def fib_recursive(n):
     return cache[n]
 
 
-def fib_non_recursive(n):
+def fib_non_recursive(n: int) -> int:
     a, b = 0, 1
     for _ in range(n):
         a, b = b, a + b
     return a
 
 
-def fib_tabulation(n):
+def fib_tabulation(n: int) -> int:
     if n == 0:
         return 0
     if 0 < n < 2:
