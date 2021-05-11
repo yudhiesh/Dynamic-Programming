@@ -1,19 +1,18 @@
+
 """
 Given a value N find the fibonacci number at that position
 """
 
 
-def fib_recursive(n: int) -> int:
-    cache = {}
-    if n == 0:
-        return 0
-    if 0 < n < 2:
-        return n
-    for _ in range(n):
-        if n in cache:
-            return cache[n]
-        cache[n] = fib_recursive(n - 1) + fib_recursive(n - 2)
-    return cache[n]
+def fib_recursive(n: int):
+    memo = {0: 0, 1: 1}
+
+    def helper(n):
+        if n not in memo:
+            memo[n] = helper(n - 1) + helper(n - 2)
+        return memo[n]
+
+    return helper(n)
 
 
 def fib_non_recursive(n: int) -> int:
@@ -43,7 +42,7 @@ if __name__ == "__main__":
     assert fib_recursive(2) == 1
     assert fib_recursive(17) == 1597
     assert fib_recursive(20) == 6765
-    # assert fib_recursive(100) == 354224848179261915075
+    assert fib_recursive(100) == 354224848179261915075
     assert fib_non_recursive(7) == 13
     assert fib_non_recursive(0) == 0
     assert fib_non_recursive(1) == 1
