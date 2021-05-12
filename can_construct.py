@@ -69,7 +69,7 @@ if __name__ == "__main__":
     assert not can_construct_memo(
         target=f"{LONG_E}f", word_bank=["e" * i for i in range(1, 7)], memo={}
     )
-    can_construct_tabulation(
+    assert can_construct_tabulation(
         target="abcdef", word_bank=["ab", "abc", "cd", "def", "abcd"]
     )
     assert not can_construct_tabulation(
