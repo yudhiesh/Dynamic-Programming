@@ -38,15 +38,14 @@ def can_construct_memo(target: str, word_bank: List[str], memo=Dict[str, bool]) 
 def can_construct_tabulation(target: str, word_bank: List[str]) -> bool:
     target_length = len(target)
     table_length = target_length + 1
-    table = [False for _ in range(table_length)]
+    table = [False] * table_length
     table[0] = True  # type: ignore
     for i in range(target_length):
         if table[i]:
             for word in word_bank:
                 forward = len(word) + i
-                if target[i: forward].startswith(word):
-                    if forward < table_length:
-                        table[forward] = True  # type: ignore
+                if target[i:forward].startswith(word) and forward <= target_length:
+                    table[forward] = True  # type: ignore
     return table[target_length]
 
 
